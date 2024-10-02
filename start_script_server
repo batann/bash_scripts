@@ -1,0 +1,7 @@
+#!/bin/bash
+clear
+cd
+echo -e "${White}\033[41mStarting Script Server...\033[0m"
+source /home/batan/script_server/bin/activate
+cd script_server
+python launcher.py

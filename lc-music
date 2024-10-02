@@ -1,0 +1,22 @@
+export FZF_DEFAULT_OPTS="  --layout=reverse --color=fg:#c0c0c0,fg+:#c0c0c0,bg:#000080,bg+:#000080 \
+  --color=hl:#1a7ada,hl+:#9ae6ff,info:#e0e000,marker:#3ee421 \
+  --color=prompt:#1700af,spinner:#8306ff,pointer:#8000ff,header:#00bf06 \
+  --color=border:#c0c0c0,preview-fg:#cdba08,preview-bg:#575656 \
+  --color=label:#3847ea,query:#d9d9d9 \
+  --border='sharp' --preview-window=down,3,'wrap' \
+  --padding='2' --margin='1' --prompt='' --marker='->' \
+  --pointer='>>' --separator='─' --scrollbar='│' --info='inline'"
+  --header="MP3 File to select:" \
+  # Display fzf menu and get the selected files
+selected_files=$(find /media/batan/100/Music -type f -name '*.mp3' | fzf --multi --preview 'echo {}')
+
+# Check if any files were selected
+if [ -n "$selected_files" ]; then
+  # Play the selected files
+  for file in $selected_files; do
+    play "$file"
+  done
+else
+  echo "No files selected."
+fi
+
